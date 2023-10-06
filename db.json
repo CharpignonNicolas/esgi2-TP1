@@ -1,0 +1,25 @@
+{
+"persons": [
+    {
+        "id":1,
+        "lastname": "CHARPIGNON",
+        "firstname": "Nicolas",
+        "birthdate": 22022202
+    }
+    ,
+    {
+        "id":2,
+        "lastname": "TEST",
+        "firstname": "Maxime",
+        "birthdate": 3111995
+    }
+    ,
+    {
+        "id":3,
+        "lastname": "MORISSET",
+        "firstname": "Guilliam",
+        "birthdate": 6564546
+    }
+
+]
+}
