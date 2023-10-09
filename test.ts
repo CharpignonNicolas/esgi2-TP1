@@ -26,7 +26,7 @@ async function run() {
     console.log(db.data)
 }
 
-run()
+// run()
 
 //get all person
 // app.get('/persons',async function (req,res){
@@ -37,13 +37,19 @@ run()
 //get personne by id
 app.get('/persons/:id',async function (req,res){
     await db.read(); 
-    var id = <number><unknown>req.params;
-    if (id === db.data.persons[1].id){
-        res.json(JSON.stringify(db.data.persons[id],null,2))
+    const id = parseInt(req.params.id);
+
+    const analyse = db.data.persons.find(elem => elem.id === id)
+    
+    if (analyse) {
+        res.json(analyse);
+    } else {
+        res.status(404).json({ message: "Personne non trouvée" });
     }
+
 });
 
-app.listen(3000,() => {
-    console.log("on ecoute bien sur le port 3000")
+app.listen(port,() => {
+    console.log("on ecoute bien sur le port ", port)
 }
 );
