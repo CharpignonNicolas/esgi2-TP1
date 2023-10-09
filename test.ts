@@ -23,7 +23,7 @@ const db = new Low(adapter, defaultData)
 
 async function run() {
     await db.read()
-    console.log(db.data.persons[1].lastname)
+    console.log(db.data)
 }
 
 run()
@@ -35,9 +35,12 @@ run()
 // });
 
 //get personne by id
-app.get('/',async function (req,res){
-    await db.read();
-    res.json(db.data.persons[1].birthdate);
+app.get('/persons/:id',async function (req,res){
+    await db.read(); 
+    var id = <number><unknown>req.params;
+    if (id === db.data.persons[1].id){
+        res.json(JSON.stringify(db.data.persons[id],null,2))
+    }
 });
 
 app.listen(3000,() => {
