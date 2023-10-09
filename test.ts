@@ -55,19 +55,19 @@ app.post('/create',async function (req,res){
     await db.read();
     const LastPerson = db.data.persons[db.data.persons.length-1]
     const id = LastPerson ? LastPerson.id + 1 : 1
-    db.data.persons.push({id,firstname : newperson,lastname:"vide",birthdate: -1})
+    db.data.persons.push({id,...newperson,lastname:"vide",birthdate: -1})
     await db.write()
     res.json(db.data.persons[id])
     console.log(db.data.persons[id])
     console.log("newperson",newperson)
 });
 
-//creé une personne depuis localhost
-    app.post('/test',async function (req,res){
-    const newperson = req.body
-    await db.read();
-    console.log("newperson",newperson)
-});
+// //creé une personne depuis localhost
+//     app.post('/test',async function (req,res){
+//     const newperson = req.body
+//     await db.read();
+//     console.log("newperson",newperson)
+// });
 
 
 app.listen(port,() => {
