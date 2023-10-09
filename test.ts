@@ -50,14 +50,14 @@ app.get('/persons/:id',async function (req,res){
 });
 
 //creé une personne depuis localhost
-app.post('/create/',async function (req,res){
+app.post('/create',async function (req,res){
     const entre : Pick<Person, "firstname"|"lastname"> = req.body
     await db.read();
     const LastPerson = db.data.persons[db.data.persons.length-1]
     const id = LastPerson ? LastPerson.id + 1 : 1
     db.data.persons.push({id, ...entre,birthdate: -1})
-    await db.read()
-    res.json(id)
+    await db.write()
+    res.json(db.data.persons[id])
 
 });
 
