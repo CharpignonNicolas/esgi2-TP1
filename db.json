@@ -128,6 +128,26 @@
       "latname": "NOm de famille",
       "password": "prenom",
       "birthdate": -1
+    },
+    {
+      "id": 24,
+      "lastname": "lebras",
+      "firstname": "elouan",
+      "birthdate": -1
+    },
+    {
+      "id": 25,
+      "lastname": "lebras",
+      "passoire": "lebras",
+      "firstname": "elouan",
+      "birthdate": -1
+    },
+    {
+      "id": 26,
+      "lastname": "lebras",
+      "passoire": "lol",
+      "firstname": "elouan",
+      "birthdate": -1
     }
   ]
 }

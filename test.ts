@@ -1,6 +1,13 @@
 import { Low } from 'lowdb'
 import { JSONFile } from 'lowdb/node'
 import express from "express";
+import {object,string,number,date,InferType} from "yup"
+
+//schema de la personne
+const PersonneSchema = object({
+    lastname: string().required(),
+    firstname: string().required(),
+})
 
 type Person = {
     "id": number,
@@ -51,6 +58,10 @@ app.get('/persons/:id',async function (req,res){
 
 //creé une personne depuis localhost
 app.post('/persons',async function (req,res){
+
+    try{PersonneSchema.validate(req.body)}
+    catch(err){res.status(400).json({ message: "données invalides" });return}
+
     const newperson = req.body
     await db.read();
     const LastPerson = db.data.persons[db.data.persons.length-1]
