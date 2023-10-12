@@ -50,7 +50,7 @@ app.get('/persons/:id',async function (req,res){
 });
 
 //creé une personne depuis localhost
-app.post('/create',async function (req,res){
+app.post('/persons',async function (req,res){
     const newperson = req.body
     await db.read();
     const LastPerson = db.data.persons[db.data.persons.length-1]
@@ -61,13 +61,13 @@ app.post('/create',async function (req,res){
 });
 
 //modifier une personne depuis postman
-app.patch('/update/:id',async function (req,res){
+app.patch('/persons/:id',async function (req,res){
     const id = parseInt(req.params.id);
     const newperson = req.body
     await db.read();
     const analyse = db.data.persons.find(elem => elem.id === id)
     if (analyse) {
-        db.data.persons[id-1] = {...analyse,...newperson}
+        db.data.persons[id-1] = {...analyse,...newperson,birthdate: -1}
         await db.write()
         res.json(id)
     } else {
@@ -75,6 +75,19 @@ app.patch('/update/:id',async function (req,res){
     }
 });
 
+//supprimer une personne depuis postman
+app.delete('/persons/:id',async function (req,res){
+    const id = parseInt(req.params.id);
+    await db.read();
+    const analyse = db.data.persons.find(elem => elem.id === id)
+    if (analyse) {
+        db.data.persons.splice(id-1,1)
+        await db.write()
+        res.json("personne suprimer")
+    } else {
+        res.status(404).json({ message: "Personne non trouvée" });
+    }
+});
 //affiche juste une donne en post sur la console
     app.post('/test',async function (req,res){
     const newperson = req.body

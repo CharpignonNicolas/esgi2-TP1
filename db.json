@@ -1,12 +1,6 @@
 {
   "persons": [
     {
-      "id": 1,
-      "lastname": "belina",
-      "firstname": "elouna",
-      "birthdate": 22022202
-    },
-    {
       "id": 2,
       "lastname": "TEST",
       "firstname": "Maxime",
@@ -115,6 +109,24 @@
       "id": 20,
       "firstname": "elouna",
       "lastname": "belina",
+      "birthdate": -1
+    },
+    {
+      "id": 21,
+      "latname": "NOm de famille",
+      "firstname": "prenom",
+      "birthdate": -1
+    },
+    {
+      "id": 22,
+      "latname": "NOm de famille",
+      "password": "prenom",
+      "birthdate": -1
+    },
+    {
+      "id": 23,
+      "latname": "NOm de famille",
+      "password": "prenom",
       "birthdate": -1
     }
   ]
