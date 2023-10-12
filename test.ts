@@ -60,6 +60,21 @@ app.post('/create',async function (req,res){
     res.json(id)
 });
 
+//modifier une personne depuis postman
+app.patch('/update/:id',async function (req,res){
+    const id = parseInt(req.params.id);
+    const newperson = req.body
+    await db.read();
+    const analyse = db.data.persons.find(elem => elem.id === id)
+    if (analyse) {
+        db.data.persons[id-1] = {...analyse,...newperson}
+        await db.write()
+        res.json(id)
+    } else {
+        res.status(404).json({ message: "Personne non trouvée" });
+    }
+});
+
 //affiche juste une donne en post sur la console
     app.post('/test',async function (req,res){
     const newperson = req.body
