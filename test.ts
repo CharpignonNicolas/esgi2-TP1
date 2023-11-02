@@ -59,7 +59,7 @@ app.get('/persons/:id',async function (req,res){
 //creé une personne depuis localhost
 app.post('/persons',async function (req,res){
 
-    try{PersonneSchema.validate(req.body)}
+    try{await PersonneSchema.validate(req.body)}
     catch(err){res.status(400).json({ message: "données invalides" });return}
 
     const newperson = req.body
@@ -73,6 +73,10 @@ app.post('/persons',async function (req,res){
 
 //modifier une personne depuis postman
 app.patch('/persons/:id',async function (req,res){
+
+    try{await PersonneSchema.validate(req.body)}
+    catch(err){res.status(400).json({ message: "données invalides" });return}
+    
     const id = parseInt(req.params.id);
     const newperson = req.body
     await db.read();
